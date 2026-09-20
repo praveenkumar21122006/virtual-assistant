@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: virtual-assistant
+    env: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app --bind 0.0.0.0:$PORT
+    healthCheckPath: /api/health
+    envVars:
+      - key: PORT
+        value: 10000
